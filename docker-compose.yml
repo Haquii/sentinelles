@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  sentinelles-api:
+    build: ./api
+    container_name: sentinelles-api
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql://declic:${POSTGRES_PASSWORD}@declic-postgres:5432/sentinelles
+    networks:
+      - declic-network
+    labels:
+      - "traefik.enable=false"
+
+  sentinelles-frontend:
+    build: ./frontend
+    container_name: sentinelles-frontend
+    restart: unless-stopped
+    depends_on:
+      - sentinelles-api
+    networks:
+      - declic-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sentinelles.rule=Host(`sentinelles.declic.cloud`)"
+      - "traefik.http.routers.sentinelles.entrypoints=websecure"
+      - "traefik.http.routers.sentinelles.tls=true"
+      - "traefik.http.services.sentinelles.loadbalancer.server.port=80"
+
+networks:
+  declic-network:
+    external: true
