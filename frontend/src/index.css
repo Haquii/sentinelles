@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-sentinel-950 text-sentinel-100 antialiased;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-sentinel-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-sentinel-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-sentinel-600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.status-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.status-libre {
+  @apply bg-green-500/20 text-green-400;
+}
+
+.status-exile {
+  @apply bg-amber-500/20 text-amber-400;
+}
+
+.status-emprisonne {
+  @apply bg-red-500/20 text-red-400;
+}
+
+.status-proces {
+  @apply bg-orange-500/20 text-orange-400;
+}
+
+.status-rehabilite {
+  @apply bg-cyan-500/20 text-cyan-400;
+}
+
+.status-decede {
+  @apply bg-gray-500/20 text-gray-400;
+}
+
+.status-anonyme {
+  @apply bg-purple-500/20 text-purple-400;
+}
+
+.status-inconnu {
+  @apply bg-sentinel-500/20 text-sentinel-400;
+}
